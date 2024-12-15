@@ -1,11 +1,11 @@
-## Assignment2b
-## Author
+# Assignment2b
+# Author
 Клычев Баходир Исламбекович, группа 24.Б83-мм
-## Contacts
+# Contacts
 st135363@student.spbu.ru
-## Description
+# Description
 HomeAssignment2b
-## Build 
+# Build 
 make
-## Run
+# Run
 ./main
