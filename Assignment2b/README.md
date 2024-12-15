@@ -1,4 +1,4 @@
-Z## Assignment2b
+## Assignment2b
 ## Author
 Клычев Баходир Исламбекович, группа 24.Б83-мм
 ## Contacts
