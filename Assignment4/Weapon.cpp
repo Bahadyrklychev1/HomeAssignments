@@ -1,4 +1,5 @@
-//Клычев Баходир Исламбекович, группа 24.Б83-мм Implementation of Transformer classes
+//Клычев Баходир Исламбекович, группа 24.Б83-мм
+//Implementation of Transformer classes
 #include "Weapon.h"
 #include <iostream>
 
