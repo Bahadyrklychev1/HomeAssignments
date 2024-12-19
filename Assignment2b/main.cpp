@@ -1,4 +1,4 @@
-//Klychev Bahodir st135363@student.spbu.ru
+//Klychev Bahadyr st135363@student.spbu.ru
 #include <iostream>
 #include <string>
 #include <cstdlib>
