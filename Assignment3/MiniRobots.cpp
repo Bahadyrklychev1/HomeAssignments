@@ -3,6 +3,11 @@
 MiniRobots::MiniRobots(uint health, uint armor, uint weapon, uint power, const std::string& size, uint heiht, uint attackZone)
     : Transformers(health, armor, weapon, power), _size(size), _height(), _attackZone() {}
 
+bool MiniRobots::transform()
+{
+    return false;
+}
+
 void MiniRobots::setSize(const std::string& size) {
     _size = size;
 }

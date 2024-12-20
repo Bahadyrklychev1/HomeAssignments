@@ -8,4 +8,4 @@ Created a hierarchy of Transformers
 # Build
 make test
 # Run
-./run_tests
+./allclasses_test

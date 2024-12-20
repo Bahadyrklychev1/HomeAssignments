@@ -3,6 +3,11 @@
 Autobots::Autobots(uint health, uint armor, uint weapon, uint power, const std::string& weaponType, uint skillLevel, uint sizeOfInventory)
     : Transformers(health, armor, weapon, power), _weaponType(weaponType), _skillLevel(), _sizeOfInventory() {}
 
+bool Autobots::transform()
+{
+    return false;
+}
+
 void Autobots::setWeaponType(const std::string& weaponType) {
     _weaponType = weaponType;
 }
