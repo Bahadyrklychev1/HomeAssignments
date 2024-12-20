@@ -1,29 +1,19 @@
-#include "Class2.h"
 
+#include "Class2.h"
 #include <iostream>
 
-#include <vector>
-
-bool Class2::checkSize(int number, const std::vector<int> &vec) {
-
-    return number == static_cast<int>(vec.size()) * 2;
-
+bool Class2::bar(int, const std::vector<float>& vector) {
+    return !vector.empty();
 }
 
-int Class2::func_4_1() {
-
-    return 5;
-
+int Class2::c_2_1() {
+    return 3;
 }
 
-double Class2::func_4_2() {
-
-    return 5.0;
-
+float Class2::c_2_2() {
+    return 3.0f;
 }
 
-void Class2::func_4_3() {
-
-    std::cout << "This is function func_4_3" << std::endl;
-
+void Class2::c_2_3() {
+    std::cout << "Class2 c_2_3" << std::endl;
 }

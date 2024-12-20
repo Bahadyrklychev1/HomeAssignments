@@ -1,22 +1,15 @@
+
 #ifndef CLASS1_H
 #define CLASS1_H
 
-#include <string>
-#include <list>
+#include <vector>
 
 class Class1 {
 public:
-    Class1() = default;
-
-    ~Class1() = default;
-
-    static bool contains(const std::string &str, const std::list<std::string> &lst);
-
-    static size_t getListSize();
-
-    static std::string getLastElement();
-
-    static void printList();
+    static bool bar(int number, const std::vector<float>& vector);
+    static int c_1_1();
+    static float c_1_2();
+    static void c_1_3();
 };
 
 #endif

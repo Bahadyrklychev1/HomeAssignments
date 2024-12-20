@@ -1,29 +1,19 @@
-#include "Class1.h"
 
+#include "Class1.h"
 #include <iostream>
 
-#include <vector>
-
-bool Class1::foo(int, const std::vector<double> &vector) {
-
-    return !vector.empty();
-
+bool Class1::bar(int number, const std::vector<float>&) {
+    return number > 0;
 }
 
-int Class1::c_3_1() {
-
-    return 5;
-
+int Class1::c_1_1() {
+    return 1;
 }
 
-double Class1::c_3_2() {
-
-    return 5.5;
-
+float Class1::c_1_2() {
+    return 1.0f;
 }
 
-void Class1::c_3_3() {
-
-    std::cout << "Class1 c_3_3" << std::endl;
-
+void Class1::c_1_3() {
+    std::cout << "Class1 c_1_3" << std::endl;
 }
