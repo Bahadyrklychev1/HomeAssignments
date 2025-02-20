@@ -14,5 +14,5 @@ float Class1::method_2() {
 }
 
 void Class1::method_3() {
-    std::cout << "Class1 method_3 executed\n";
+    std::cout << "Class1. method_3 executed\n";
 }
