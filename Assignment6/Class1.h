@@ -1,4 +1,3 @@
-
 #ifndef CLASS1_H
 #define CLASS1_H
 
@@ -6,10 +5,10 @@
 
 class Class1 {
 public:
-    static bool bar(int number, const std::vector<float>& vector);
-    static int c_1_1();
-    static float c_1_2();
-    static void c_1_3();
+    bool bar(int number, const std::vector<float>& vector);
+    int method_1();
+    float method_2();
+    void method_3();
 };
 
-#endif
+#endif 
