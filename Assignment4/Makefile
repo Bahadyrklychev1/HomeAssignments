@@ -1,4 +1,3 @@
-
 CXX = g++
 CXXFLAGS = -Wall -Werror -Wpedantic -std=c++17 -I/usr/include/gtest
 
