@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS=-Werror -Wpedantic -Wall -std=c++17
-LDFLAGS= -lgtest -lgtest_main -lpthread
+LDFLAGS=-lgtest -lgtest_main -lpthread
 SOURCES=Class1.cpp Class2.cpp Class3.cpp tests.cpp
 HEADERS=Class1.h Class2.h Class3.h template_class.h
 OBJECTS=$(SOURCES:.cpp=.o)
@@ -11,9 +11,8 @@ all: $(EXECUTABLE)
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(OBJECTS) $(CFLAGS) $(LDFLAGS) -o $@
 
-%.o: %.cpp
+%.o: %.cpp $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
-
 
 dependencies: $(SOURCES) $(HEADERS)
 	$(CC) -MM $(SOURCES) > dependencies.mk
@@ -27,4 +26,4 @@ format:
 .PHONY: clean
 
 clean:
-	rm -rf $(EXECUTABLE) $(OBJECTS) *.mk
+	rm -rf $(EXECUTABLE) $(OBJECTS) dependencies.mk
