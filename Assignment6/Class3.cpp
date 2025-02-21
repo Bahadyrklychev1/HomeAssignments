@@ -5,14 +5,14 @@ bool Class3::bar(int number, const std::vector<float>& vec) {
     return number == static_cast<int>(vec.size()) * -1;
 }
 
-int Class3::c_3_1() {
-    return 2;
+int Class3::method_1() {
+    return 30;
 }
 
-float Class3::c_3_2() {
-    return 2.0f;
+float Class3::method_2() {
+    return 30.5f;
 }
 
-void Class3::c_3_3() {
-    std::cout << "Class3 c_3_3" << std::endl;
+void Class3::method_3() {
+    std::cout << "Class3 method_3 executed" << std::endl;
 }
