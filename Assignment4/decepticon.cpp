@@ -1,4 +1,4 @@
-//Клычев Баходир Исламбекович, группа 24.Б83-мм 
+//Клычев Баходир Исламбекович, группа 24.Б83-мм.
 //Implementation of Transformer classes
 #include "decepticon.h"
 #include <iostream>
