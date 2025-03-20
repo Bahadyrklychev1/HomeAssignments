@@ -4,13 +4,8 @@
 ## Contacts
 st135363@student.spbu.ru
 ## Description
-
+Иерархия классов Transformers: 'Autobots', 'Decepticons', 'MiniRobots' с виртуальными методами 'transform', 'openFire', 'ulta'. Включены unit-тесты и Makefile.
 ## Build
 make
 ## Run
-./tests
-
-
-
-
-
+./allclasses_test
