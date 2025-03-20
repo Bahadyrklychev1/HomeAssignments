@@ -3,8 +3,9 @@
 ## Contacts
 st135363@student.spbu.ru
 ## Description
-Implementation of Transformer classes
+## Description
+Transformers class hierarchy with operators, tests, and strict compilation.
 ## Build 
 make
 ## Run
-./test_transformers
+./allclasses_test
