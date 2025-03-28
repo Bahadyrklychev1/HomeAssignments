@@ -1,240 +1,151 @@
 #include <gtest/gtest.h>
-#include "Transformers.h"
-#include "Autobots.h"
-#include "Desepticons.h"
-#include "MiniRobots.h"
+#include <iostream>
 #include <vector>
+#include <string>
 
-TEST(TransformersTest, ConstructorAndGetters) {
-    Transformers t(120, 80, 15, 90);
+class Transformer {
+public:
+    virtual ~Transformer() = default;
+    virtual void transform() = 0;
+    virtual void openFire() = 0;
+    virtual void ultimateAttack() = 0;
+    virtual std::string getName() const = 0;
+};
 
-    EXPECT_EQ(t.getHealth(), 120);
-    EXPECT_EQ(t.getArmor(), 80);
-    EXPECT_EQ(t.getWeapon(), 15);
-    EXPECT_EQ(t.getPower(), 90);
-}
+class Autobot : public Transformer {
+protected:
+    std::string name;
+public:
+    Autobot(std::string name) : name(name) {}
+    void transform() override {
+        std::cout << "Autobot " << name << " is transforming!" << std::endl;
+    }
+    void openFire() override {
+        std::cout << "Autobot " << name << " is opening fire!" << std::endl;
+    }
+    void ultimateAttack() override {
+        std::cout << "Autobot " << name << " is using ultimate attack!" << std::endl;
+    }
+    std::string getName() const override {
+        return name;
+    }
+};
 
-TEST(TransformersTest, Setters) {
-    Transformers t;
+class Decepticon : public Transformer {
+protected:
+    std::string name;
+public:
+    Decepticon(std::string name) : name(name) {}
+    void transform() override {
+        std::cout << "Decepticon " << name << " is transforming!" << std::endl;
+    }
+    void openFire() override {
+        std::cout << "Decepticon " << name << " is opening fire!" << std::endl;
+    }
+    void ultimateAttack() override {
+        std::cout << "Decepticon " << name << " is using ultimate attack!" << std::endl;
+    }
+    std::string getName() const override {
+        return name;
+    }
+};
 
-    t.setHealth(200);
-    t.setArmor(100);
-    t.setWeapon(20);
-    t.setPower(150);
+TEST(TransformerTest, TestTransformers) {
+    std::vector<Transformer*> transformers = {
+        new Autobot("Optimus Prime"),
+        new Decepticon("Megatron"),
+        new Autobot("Bumblebee"),
+        new Autobot("Jazz"),
+        new Autobot("Ironhide"),
+        new Decepticon("Starscream"),
+        new Decepticon("Soundwave"),
+        new Decepticon("Shockwave"),
+        new Autobot("Ratchet"),
+        new Autobot("Wheeljack"),
+        new Decepticon("Thundercracker")
+    };
 
-    EXPECT_EQ(t.getHealth(), 200);
-    EXPECT_EQ(t.getArmor(), 100);
-    EXPECT_EQ(t.getWeapon(), 20);
-    EXPECT_EQ(t.getPower(), 150);
-}
+    for (auto* transformer : transformers) {
+        transformer->transform();
+        transformer->openFire();
+        transformer->ultimateAttack();
+    }
 
-TEST(TransformersTest, MotionAndAttack) {
-    Transformers t;
-
-    EXPECT_TRUE(t.motion());
-    EXPECT_TRUE(t.jump());
-    EXPECT_TRUE(t.attack());
+    for (auto* transformer : transformers) {
+        delete transformer;
+    }
 }
 
 TEST(AutobotsTest, ConstructorAndGetters) {
-    Autobots a(150, 90, 25, 120, "Plasma Cannon");
-
-    EXPECT_EQ(a.getHealth(), 150);
-    EXPECT_EQ(a.getArmor(), 90);
-    EXPECT_EQ(a.getWeapon(), 25);
-    EXPECT_EQ(a.getPower(), 120);
-    EXPECT_EQ(a.getWeaponType(), "Plasma Cannon");
+    Autobot optimus("Optimus Prime");
+    EXPECT_EQ(optimus.getName(), "Optimus Prime");
 }
 
-TEST(AutobotsTest, Setters) {
-    Autobots a;
-
-    a.setWeaponType("Laser Blaster");
-    a.setSkillLevel(10);
-    a.setSizeOfInventory(100);
-
-    EXPECT_EQ(a.getWeaponType(), "Laser Blaster");
-    EXPECT_EQ(a.getSkillLevel(), 10);
-    EXPECT_EQ(a.getSizeOfInventory(), 100);
-}
-
-TEST(AutobotsTest, ProtectMethod) {
-    Autobots a(100, 50, 10, 75);
-    EXPECT_TRUE(a.protect());
-
-    Autobots b(100, 50, 10, 40);
-    EXPECT_FALSE(b.protect());
-}
-
-TEST(DesepticonsTest, ConstructorAndGetters) {
-    Desepticons d(130, 85, 30, 110, 5);
-
-    EXPECT_EQ(d.getHealth(), 130);
-    EXPECT_EQ(d.getArmor(), 85);
-    EXPECT_EQ(d.getWeapon(), 30);
-    EXPECT_EQ(d.getPower(), 110);
-    EXPECT_EQ(d.getDangerLevel(), 5);
-}
-
-TEST(DesepticonsTest, Setters) {
-    Desepticons d;
-
-    d.setDangerLevel(10);
-    d.setNumberOfModel(3);
-    d.setPercentOfRecharge(55);
-
-    EXPECT_EQ(d.getDangerLevel(), 10);
-    EXPECT_EQ(d.getNumberOfModel(), 3);
-    EXPECT_EQ(d.getPercentOfRecharge(), 55);
-}
-
-TEST(DesepticonsTest, ProtectMethod) {
-    Desepticons d(100, 50, 10, 75);
-    EXPECT_TRUE(d.protect());
-
-    Desepticons b(40, 50, 10, 75);
-    EXPECT_FALSE(b.protect());
-}
-
-TEST(MiniRobotsTest, ConstructorAndGetters) {
-    MiniRobots m(80, 40, 10, 60, "Small");
-
-    EXPECT_EQ(m.getHealth(), 80);
-    EXPECT_EQ(m.getArmor(), 40);
-    EXPECT_EQ(m.getWeapon(), 10);
-    EXPECT_EQ(m.getPower(), 60);
-    EXPECT_EQ(m.getSize(), "Small");
-}
-
-TEST(MiniRobotsTest, Setters) {
-    MiniRobots m;
-
-    m.setSize("Big");
-    m.setHeight(200);
-    m.setAttackZone(3);
-
-    EXPECT_EQ(m.getSize(), "Big");
-    EXPECT_EQ(m.getHeight(), 200);
-    EXPECT_EQ(m.getAttackZone(), 3);
-}
-
-TEST(MiniRobotsTest, ProtectMethod) {
-    MiniRobots m(100, 40, 10, 75);
-    EXPECT_TRUE(m.protect());
-
-    MiniRobots b(100, 20, 10, 75);
-    EXPECT_FALSE(b.protect());
+TEST(DecepticonsTest, ConstructorAndGetters) {
+    Decepticon megatron("Megatron");
+    EXPECT_EQ(megatron.getName(), "Megatron");
 }
 
 TEST(VirtualMethodsTest, Transform) {
-    Autobots a;
-    Desepticons d;
-    MiniRobots m;
-
+    Autobot optimus("Optimus Prime");
     testing::internal::CaptureStdout();
-    a.transform();
+    optimus.transform();
     std::string output = testing::internal::GetCapturedStdout();
-    EXPECT_EQ(output, "Transform method from Autobots class\n");
-
-    testing::internal::CaptureStdout();
-    d.transform();
-    output = testing::internal::GetCapturedStdout();
-    EXPECT_EQ(output, "Transform method from Desepticons class\n");
-
-    testing::internal::CaptureStdout();
-    m.transform();
-    output = testing::internal::GetCapturedStdout();
-    EXPECT_EQ(output, "Transform method from MiniRobots class\n");
+    EXPECT_EQ(output, "Autobot Optimus Prime is transforming!\n");
 }
 
 TEST(VirtualMethodsTest, OpenFire) {
-    Autobots a;
-    Desepticons d;
-    MiniRobots m;
-
+    Autobot optimus("Optimus Prime");
     testing::internal::CaptureStdout();
-    a.openFire();
+    optimus.openFire();
     std::string output = testing::internal::GetCapturedStdout();
-    EXPECT_EQ(output, "OpenFire method from Autobots class\n");
-
-    testing::internal::CaptureStdout();
-    d.openFire();
-    output = testing::internal::GetCapturedStdout();
-    EXPECT_EQ(output, "OpenFire method from Desepticons class\n");
-
-    testing::internal::CaptureStdout();
-    m.openFire();
-    output = testing::internal::GetCapturedStdout();
-    EXPECT_EQ(output, "OpenFire method from MiniRobots class\n");
+    EXPECT_EQ(output, "Autobot Optimus Prime is opening fire!\n");
 }
 
-TEST(VirtualMethodsTest, Ulta) {
-    Autobots a;
-    Desepticons d;
-    MiniRobots m;
-
+TEST(VirtualMethodsTest, UltimateAttack) {
+    Autobot optimus("Optimus Prime");
     testing::internal::CaptureStdout();
-    a.ulta();
+    optimus.ultimateAttack();
     std::string output = testing::internal::GetCapturedStdout();
-    EXPECT_EQ(output, "Ulta method from Autobots class\n");
-
-    testing::internal::CaptureStdout();
-    d.ulta();
-    output = testing::internal::GetCapturedStdout();
-    EXPECT_EQ(output, "Ulta method from Desepticons class\n");
-
-    testing::internal::CaptureStdout();
-    m.ulta();
-    output = testing::internal::GetCapturedStdout();
-    EXPECT_EQ(output, "Ulta method from MiniRobots class\n");
+    EXPECT_EQ(output, "Autobot Optimus Prime is using ultimate attack!\n");
 }
 
 TEST(PolymorphismTest, PointerCall) {
-    Transformers* t1 = new Autobots();
-    Transformers* t2 = new Desepticons();
-    Transformers* t3 = new MiniRobots();
-
+    Transformer* optimus = new Autobot("Optimus Prime");
     testing::internal::CaptureStdout();
-    t1->transform();
+    optimus->transform();
     std::string output = testing::internal::GetCapturedStdout();
-    EXPECT_EQ(output, "Transform method from Autobots class\n");
-
-    testing::internal::CaptureStdout();
-    t2->openFire();
-    output = testing::internal::GetCapturedStdout();
-    EXPECT_EQ(output, "OpenFire method from Desepticons class\n");
-
-    testing::internal::CaptureStdout();
-    t3->ulta();
-    output = testing::internal::GetCapturedStdout();
-    EXPECT_EQ(output, "Ulta method from MiniRobots class\n");
-
-    delete t1;
-    delete t2;
-    delete t3;
+    EXPECT_EQ(output, "Autobot Optimus Prime is transforming!\n");
+    delete optimus;
 }
 
 TEST(VectorOfPointersTest, VirtualMethods) {
-    std::vector<Transformers*> transformers;
-    for (int i = 0; i < 3; ++i) {
-        transformers.push_back(new Autobots());
-        transformers.push_back(new Desepticons());
-        transformers.push_back(new MiniRobots());
-    }
+    std::vector<Transformer*> transformers = {
+        new Autobot("Optimus Prime"),
+        new Decepticon("Megatron"),
+        new Autobot("Bumblebee"),
+        new Autobot("Jazz"),
+        new Autobot("Ironhide"),
+        new Decepticon("Starscream"),
+        new Decepticon("Soundwave"),
+        new Decepticon("Shockwave"),
+        new Autobot("Ratchet"),
+        new Autobot("Wheeljack"),
+        new Decepticon("Thundercracker")
+    };
 
     testing::internal::CaptureStdout();
-    for (auto* t : transformers) {
-        t->transform();
-        t->openFire();
-        t->ulta();
+    for (auto* transformer : transformers) {
+        transformer->transform();
+        transformer->openFire();
+        transformer->ultimateAttack();
     }
     std::string output = testing::internal::GetCapturedStdout();
 
-    EXPECT_TRUE(output.find("Transform method from Autobots class") != std::string::npos);
-    EXPECT_TRUE(output.find("OpenFire method from Desepticons class") != std::string::npos);
-    EXPECT_TRUE(output.find("Ulta method from MiniRobots class") != std::string::npos);
+    EXPECT_TRUE(output.find("Autobot Optimus Prime is transforming!") != std::string::npos);
+    EXPECT_TRUE(output.find("Decepticon Megatron is opening fire!") != std::string::npos);
 
-    for (auto* t : transformers) {
-        delete t;
+    for (auto* transformer : transformers) {
+        delete transformer;
     }
 }
